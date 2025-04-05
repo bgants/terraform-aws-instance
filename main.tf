@@ -1,5 +1,5 @@
 resource "aws_instance" "hello_world" {
   ami           = data.aws_ami.ubuntu.id
-  subnet_id     = data.aws_subnets.default.ids[0]
+  subnet_id     = var.subnet_id
   instance_type = "t3.micro"
 }
