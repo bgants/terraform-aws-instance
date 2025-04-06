@@ -13,3 +13,8 @@ variable "instance_type" {
   description = "The type of instance to launch."
   default     = "t3.micro"
 }
+
+variable "vpc_id" {
+  type        = string
+  description = "The ID of the VPC."
+}
