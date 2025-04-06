@@ -8,11 +8,6 @@ variable "ami" {
   description = "The Amazon Machine Image to use when launching the EC2 Instance."
 }
 
-variable "subnet_id" {
-  type        = string
-  description = "The ID of the Subnet to launch the instance into."
-}
-
 variable "instance_type" {
   type        = string
   description = "The type of instance to launch."
