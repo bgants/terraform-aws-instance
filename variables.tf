@@ -7,7 +7,6 @@ variable "instance_type" {
 variable "subnet_id" {
   description = "The subnet ID to launch the instance in"
   type        = string
-  default     = "subnet-29876e4d"
   validation {
     condition     = length(regexall("^subnet-[\\d|\\w]+$", var.subnet_id)) == 1
     error_message = "The subnet ID must  match the pattern ^subnet-[\\d][\\w]+$"
