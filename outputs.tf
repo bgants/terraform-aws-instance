@@ -1,20 +1,20 @@
-output "aws_instance_arn" {
+output "aws_instance_arns" {
   description = "The ARNs of the instances"
-  value       = [for instance in aws_instance.web_server : instance.arn]
+  value       =  aws_instance.web_server[*].arn
 
 }
 
-output "aws_instance_ip" {
+output "aws_instance_public_ips" {
   description = "The public IP of the instance"
-  value       = [for instance in aws_instance.web_server : instance.public_ip]
+  value       = aws_instance.web_server[*].public_ip
 }
 
-output "aws_instance_subnet_id" {
+output "aws_instance_subnet_ids" {
   description = "The subnet ID of the instance"
-  value       = [ for instance in aws_instance.web_server : instance.subnet_id ]
+  value       = aws_instance.web_server[*].subnet_id
 }
 
-output "aws_instance_role" {
+output "aws_instance_peofiles" {
   description = "The IAM role of the instance"
-  value       = [ for instance in aws_instance.web_server : instance.iam_instance_profile ]
+  value       = aws_instance.web_server[*].iam_instance_profile
 }
