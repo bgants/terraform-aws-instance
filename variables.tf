@@ -22,3 +22,36 @@ variable "vpc_id" {
   type        = string
   description = "The ID of the VPC."
 }
+
+variable "name_prefix" {
+  type        = string
+  description = "The prefix for the name tag of the instance."
+  default     = "dev"
+}
+
+variable "tags" {
+  type = map(string)
+  description = "Key/Value pairs to pass to AWS as Tags."
+  default = {}
+}
+
+variable "instance_count" {
+  type        = number
+  description = "The number of instances to launch."
+  default     = 1
+  validation {
+    condition = can(parseint(tostring(var.instance_count), 10))
+    error_message = "The instance count must be a number."
+  }
+
+  validation {
+    condition     = var.instance_count > 0
+    error_message = "The instance count must be greater than 0."
+  }
+}
+
+variable "enable_systems_manager" {
+  type        = bool
+  description = "Enable Systems Manager for the instance."
+  default     = false
+}
