@@ -7,6 +7,24 @@ data "aws_subnets" "default" {
     name   = "vpc-id"
     values = [data.aws_vpc.default.id]
   }
+
+  # Filter for subnets in specific availability zones
+  filter {
+    name   = "availability-zone"
+    values = ["us-east-1a", "us-east-1b"]
+  }
+
+  # Only include subnets that are available (not pending)
+  filter {
+    name   = "state"
+    values = ["available"]
+  }
+
+  # Optional: Filter by subnet type (uncomment if needed)
+  # filter {
+  #   name   = "tag:Type"
+  #   values = ["public", "private"]
+  # }
 }
 
 data "aws_ami" "ubuntu" {
@@ -35,6 +53,6 @@ data "aws_iam_policy_document" "instance_assume_role_policy" {
   }
 }
 
-data "aws_iam_policy" ssm_arn {
+data "aws_iam_policy" "ssm_arn" {
   arn = "arn:aws:iam::aws:policy/AmazonSSMManagedEC2InstanceDefaultPolicy"
 }
